@@ -1,0 +1,78 @@
+/* Container */
+.Ptile-estimation-container {
+  margin-left: 260px;
+  padding: 60px;
+  background-color: #f4f6f8;
+  font-family: 'Segoe UI', sans-serif;
+  min-height: 100vh;
+}
+
+/* Heading */
+.Ptile-estimation-container h2 {
+  font-size: 26px;
+  color: #1c4c91;
+  margin-bottom: 30px;
+}
+
+/* Section Title */
+.Psection-title {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+/* Input Row */
+.Pinput-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+/* Input Group */
+.Pinput-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 220px;
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.Pinput-group input {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  margin-bottom: 6px;
+  outline-color: #1c4c91;
+}
+
+/* Unit Label */
+.Punit {
+  font-size: 14px;
+  color: #777;
+  margin-top: -5px;
+}
+
+/* Save Button */
+.Pestimate-btn {
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #1c4c91;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.Pestimate-btn:hover {
+  background-color: #1556a0;
+}

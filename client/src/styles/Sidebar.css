@@ -1,0 +1,90 @@
+.sidebar {
+  width: 250px;
+  background: #1c4c91;
+  color: white;
+  height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Heading text */
+.logo {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 52px; /* a bit closer to the logo image */
+  line-height: 1.2;
+  margin-left: 20px;
+}
+
+/* Logo image sits under heading */
+.logo-image-wrap {
+  display: grid;
+  place-items: center;
+  padding: 8px 0 16px;
+}
+.logo-image {
+  width: 120px;          /* tweak as you like */
+  height: auto;
+  display: block;
+  object-fit: contain;
+  background: #ffffff10; /* soft highlight against blue */
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,.15);
+}
+
+/* Nav list (buttons) below logo */
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+                 /* take remaining space so logout can sit at bottom */
+  
+  margin-top: 70px;
+   flex: 1 1 auto;
+  overflow-y: auto;
+  padding-bottom: 110px; 
+}
+
+.nav-list li { margin: 10px 0; }
+
+.nav-list li a {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.2s ease;
+  font-family: 'Poppins', sans-serif;
+  border: .3px solid white;
+}
+
+.nav-list li a:hover { background: rgba(255, 255, 255, 0.15); }
+.nav-list li.active a { background: rgba(255, 255, 255, 0.25); }
+
+/* Logout pinned to bottom */
+.sb-logout {
+  position: sticky;
+  bottom: 50px;           /* <-- adjust this value to move higher/lower */
+  margin-top: 0;          /* override any auto margin */
+}
+.sb-logout-btn {
+  width: 100%;
+  padding: 10px 12px;
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  transition: background 0.2s ease;
+    margin-top: 80px;
+}
+.sb-logout-btn:hover { background: #b91c1c; }
+
+/* Remove old rules that might interfere (like negative margins) */
+.sidebar ul { background: #1c4c91; }

@@ -1,0 +1,199 @@
+/* =====================================================
+   NewEstimation.css - modern, polished UI
+   No API/logic changes; just visuals
+   ===================================================== */
+
+:root {
+  --sidebar-width: 260px;
+  --primary: #1c4c91;
+  --primary-2: #3b82f6;
+  --bg: #f5f7fb;
+  --card: #ffffff;
+  --text: #0f172a;
+  --muted: #64748b;
+  --line: #e5e7eb;
+  --ring: rgba(59,130,246,.25);
+  --shadow: 0 15px 30px rgba(0,0,0,.5);
+ 
+  /* icon sizing */
+  --icon-size: 85px;           /* base size for Tile */
+  --ceiling-scale: 1.35;   
+}
+.type-card.ceiling img { transform: scale(2.28); }
+
+
+/* Page layout next to sidebar */
+.dashboard {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr;
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+/* Content wrapper */
+.estimation-content {
+  grid-column: 2;
+  max-width: 900px;
+  width: 92%;
+  margin: 22px auto;
+  padding: 18px 16px 24px;
+  font-family: 'Poppins', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto;
+}
+
+/* Header */
+.ne-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: end;
+  margin-bottom: 14px;
+}
+.ne-header h2 {
+  margin: 0;
+  font-size: 2rem;
+  color: var(--primary);
+  letter-spacing: .2px;
+}
+.ne-sub {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+
+/* Steps (visual only) */
+.ne-steps {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-auto-flow: column; gap: 10px;
+  align-items: center;
+}
+.ne-steps .step {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 10px;
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 700; color: var(--text);
+  box-shadow: 0 6px 16px rgba(0,0,0,.06);
+}
+.ne-steps .step span {
+  width: 18px; height: 18px; border-radius: 999px; display:grid; place-items:center;
+  background: #e2e8f0; color:#0f172a; font-size:11px; font-weight:800;
+}
+.ne-steps .step.active { box-shadow: 0 0 0 6px var(--ring); border-color: var(--primary); }
+.ne-steps .step.done span { background: #22c55e; color: #fff; }
+
+/* Type cards */
+.estimation-types {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 14px;
+  margin: 8px 0 16px;
+}
+.type-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 18px 16px;
+  box-shadow: var(--shadow);
+  display: grid; place-items: center;
+  gap: 8px; cursor: pointer;
+  transition: transform .06s ease, box-shadow .15s ease, border-color .15s ease;
+}
+/* Make both icons the same visual size */
+.type-card img {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  display: block;
+}
+
+/* Make the Ceiling icon bigger */
+.type-card.ceiling img {
+  width: calc(var(--icon-size) * var(--ceiling-scale));
+  height: calc(var(--icon-size) * var(--ceiling-scale));
+}
+
+/* The second card is the Ceiling card in your markup */
+.estimation-types .type-card:nth-of-type(2) img {
+  transform: scale(var(--ceiling-scale));
+}
+
+.type-card span {
+  font-weight: 800; color: var(--primary);
+}
+.type-card:hover { transform: translateY(-1px); }
+.type-card.selected {
+  border-color: var(--primary);
+  box-shadow: 0 10px 26px rgba(28,76,145,.20);
+}
+
+/* Form card */
+.ne-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 16px;
+}
+.ne-grid {
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 14px;
+}
+.field { display:flex; flex-direction: column; gap: 6px; }
+.label { font-weight: 800; font-size: 13px; color: var(--text); }
+
+.field-wrap {
+  position: relative;
+  display:flex; align-items: center;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  padding-left: 38px; /* icon space */
+  box-shadow: 0 6px 16px rgba(0,0,0,.05);
+}
+.field-wrap:focus-within {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 6px var(--ring);
+}
+.field .icon {
+  position: absolute; left: 10px; color:#94a3b8; display:grid; place-items:center;
+}
+.field input {
+  width: 100%; height: 100%;
+  border: none; outline: none;
+  background: transparent;
+  padding: 0 12px 0 0;
+  font-size: 14px; color: var(--text);
+}
+.hint { color: var(--muted); font-size: 12px; margin-top: 4px; }
+
+/* CTA */
+.ne-cta {
+  display:flex; justify-content:flex-end; margin-top: 16px;
+}
+.estimate-btn {
+  min-width: 200px;
+  padding: 12px 18px;
+  border: none; border-radius: 12px; cursor: pointer;
+  font-weight: 800; font-size: 15px; letter-spacing: .2px;
+  color: #fff; background: linear-gradient(135deg, var(--primary), var(--primary-2));
+  box-shadow: 0 20px 40px rgba(28,76,145,.12);
+  transition: transform .06s ease, filter .15s ease;
+}
+.estimate-btn:hover { filter: brightness(1.04); }
+.estimate-btn:active { transform: translateY(1px); }
+.estimate-btn:disabled { opacity: .6; cursor: not-allowed; filter: grayscale(40%); }
+
+/* Responsive */
+@media (max-width: 980px){
+  .estimation-content{ width:95%; }
+}
+@media (max-width: 720px){
+  .ne-header{ grid-template-columns: 1fr; }
+  .ne-grid{ grid-template-columns: 1fr; }
+  .estimation-types{ grid-template-columns: 1fr; }
+  .ne-cta{ justify-content: stretch; }
+  .estimate-btn{ width:100%; }
+}

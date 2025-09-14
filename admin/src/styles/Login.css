@@ -1,0 +1,38 @@
+.admin-login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #fff;
+  }
+  
+  .admin-login-box {
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 350px;
+  }
+  
+  .admin-login-box h2 {
+    margin-bottom: 20px;
+  }
+  
+  .admin-login-box input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #1c4c91;
+    border-radius: 5px;
+  }
+  
+  .admin-login-box button {
+    width: 100%;
+    padding: 12px;
+    background: #1c4c91;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  

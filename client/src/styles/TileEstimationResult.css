@@ -1,0 +1,296 @@
+/* =====================================================
+   TileEstimationResult.css
+   Fixed sidebar + centered content; glassy AI + sharp canvas
+   ===================================================== */
+
+/* 1) Whole page: sidebar + content */
+.dashboard {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  height: 100vh;
+  background: #f3f4f6;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden; /* avoid double scrollbars */
+}
+
+/* 2) Sidebar stays put and scrolls internally if needed */
+.dashboard > *:first-child {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+/* 3) Main pane scrolls vertically */
+.tile-result-container {
+  position: relative;
+  overflow-y: auto;
+  max-height: 100vh;
+  box-sizing: border-box;
+  padding: 2rem 2rem 3rem;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1000px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 12px 36px rgba(17, 24, 39, 0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Title */
+.tile-result-container h2 {
+  margin: 0.2rem 0 0.6rem;
+  font-size: 2rem;
+  color: #1c4c91;
+  text-align: center;
+}
+
+/* --------- AI badge + stat chips --------- */
+.ai-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #e0f2fe, #e0e7ff);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  margin: 10px auto 6px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+.ai-chip .bot {
+  font-size: 1.2rem;
+  background: #1c4c91;
+  color: white;
+  padding: 6px;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(28, 76, 145, 0.4);
+}
+.ai-chip .label {
+  font-weight: 700;
+  color: #1c4c91;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ai-values {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 6px 0 14px;
+  align-items: center;
+}
+.ai-badge {
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  min-width: 260px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  color: #0f172a;
+}
+.ai-badge b { font-weight: 700; }
+.ai-badge.danger { background: #fff1f2; border-color: #fecaca; color: #7f1d1d; }
+.ai-badge.purchase { background: #fef9c3; border-color: #fde68a; color: #854d0e; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.stats-row {
+  display: flex;
+  gap: 10px;
+  margin: 6px 0 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.stats-row .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 12px;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  color: #0f172a;
+  font-size: 0.95rem;
+}
+.stats-row .chip b { font-weight: 800; }
+
+/* --------- Room Breakdown table (screen) --------- */
+.rooms-table-wrap{
+  width: 100%;
+  max-width: 860px;    /* keep it inside the card width */
+  margin: 8px auto 14px;
+  overflow-x: auto;    /* safe on very small screens */
+}
+
+.rooms-table{
+  width: 100%;
+  table-layout: fixed;       /* lock column widths */
+  border-collapse: collapse;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+}
+
+.rooms-table th,
+.rooms-table td{
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  color: #374151;
+  border-bottom: 1px solid #eef2f7;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* widths & alignment per column */
+.rooms-table th:nth-child(1), .rooms-table td:nth-child(1){ width: 28%; text-align: left; }
+.rooms-table th:nth-child(2), .rooms-table td:nth-child(2){ width: 24%; text-align: left; }
+.rooms-table th:nth-child(3), .rooms-table td:nth-child(3){ width: 16%; text-align: right; }
+.rooms-table th:nth-child(4), .rooms-table td:nth-child(4){ width: 12%; text-align: right; }
+.rooms-table th:nth-child(5), .rooms-table td:nth-child(5){ width: 20%; text-align: right; }
+
+.rooms-table thead th{
+  background: #f1f5f9;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.rooms-table tbody tr.active{
+  background: #eef6ff;
+}
+
+
+
+
+
+.rooms-table .mini {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 8px;
+  background: #1c4c91;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+}
+.rooms-table .mini:hover { filter: brightness(1.05); }
+
+/* --------- Canvas Frame (glassy card) --------- */
+.canvas-frame {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #f6f9ff 0%, #eef2f8 100%);
+  padding: 10px;
+  box-shadow: 0 10px 28px rgba(17, 24, 39, 0.15);
+  border: 1px solid #e5e7eb;
+}
+.canvas-frame canvas {
+  width: 100%;
+  height: auto;   /* keep aspect ratio from JS */
+  display: block;
+}
+
+/* Details box */
+.result-details {
+  width: 100%;
+  max-width: 620px;
+  padding: 1.3rem 1.5rem;
+  background: #ffffff;
+  border-left: 5px solid #1c4c91;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+.result-details p {
+  margin: 0.55rem 0;
+  font-size: 1rem;
+  color: #374151;
+}
+.result-details p strong {
+  color: #065f46;
+}
+
+/* Buttons (Save/Edit) */
+.button-group2 {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  width: 100%;
+  max-width: 620px;
+  margin: 4px auto 0;
+  align-items: center;
+}
+.button-group2 button {
+  flex: 0 0 200px;
+  padding: 0.75rem 1.7rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.05s ease, filter 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  color: white;
+}
+.button-group2 button:active { transform: translateY(1px); }
+.button-group2 .save-btn { background: linear-gradient(to right,#1c4c91,#265fa3); }
+.button-group2 .save-btn:hover { filter: brightness(1.05); }
+.button-group2 .edit-btn { background: #6895c1; }
+.button-group2 .edit-btn:hover { filter: brightness(1.05); }
+
+/* Export row */
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 620px;
+  margin-top: 10px;
+}
+.export-btn {
+  color: #111827;
+  background: #fde68a;
+  border: 1px solid #fcd34d;
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .05s ease, filter .2s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.export-btn:hover { filter: brightness(1.02); }
+.export-btn:active { transform: translateY(1px); }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .tile-result-container {
+    max-width: 92%;
+    padding: 1.5rem 1.3rem 2.3rem;
+  }
+  .result-details,
+  .button-group2,
+  .button-group { max-width: 100%; }
+}
+
+@media (max-width: 768px) {
+  .dashboard { grid-template-columns: 1fr; }
+  .dashboard > *:first-child {
+    position: relative; height: auto;
+  }
+  .tile-result-container {
+    border-radius: 0;
+    box-shadow: none;
+    margin: 0;
+    padding: 1rem;
+    max-width: 100%;
+  }
+}

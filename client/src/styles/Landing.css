@@ -1,0 +1,124 @@
+:root{
+  --auth-bg-1:#0f172a; /* slate-900 */
+  --auth-bg-2:#1e3a8a; /* blue-800 */
+  --accent:#1c4c91;
+  --accent-2:#3b82f6;
+  --text:#0f172a;
+  --muted:#64748b;
+  --white:#fff;
+  --ring:rgba(59,130,246,.25);
+}
+
+.landing-page{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  background:
+    radial-gradient(1200px 600px at 10% 10%, rgba(59,130,246,.18), transparent 50%),
+    radial-gradient(900px 500px at 90% 90%, rgba(14,165,233,.15), transparent 60%),
+    linear-gradient(135deg, var(--auth-bg-1), var(--auth-bg-2));
+  color:var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial;
+  position:relative;
+  overflow:hidden;
+}
+
+/* blobs */
+.lp-art .lp-blob{
+  position:absolute; border-radius:9999px; filter:blur(45px); opacity:.35;
+}
+.lp-art .b1{ width:260px; height:260px; background:#60a5fa; left:-60px; top:-60px; }
+.lp-art .b2{ width:380px; height:380px; background:#22d3ee; right:-120px; bottom:-120px; }
+.lp-art .b3{ width:200px; height:200px; background:#a78bfa; right:20%; top:10%; }
+
+/* header */
+.lp-header{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:20px 28px;
+}
+.lp-logo{
+  width:44px; height:44px; border-radius:12px; display:grid; place-items:center;
+  background:linear-gradient(135deg, var(--accent), var(--accent-2));
+  color:#fff; font-weight:800; letter-spacing:.5px; box-shadow:0 10px 20px rgba(28,76,145,.35);
+}
+.lp-nav{ display:flex; gap:12px; align-items:center; }
+.lp-link{
+  color:#e2e8f0; text-decoration:none; font-weight:600;
+}
+.lp-link:hover{ text-decoration:underline; }
+
+/* hero */
+
+.lp-hero-text h1{
+  color:#f8fafc; font-size: clamp(28px, 4vw, 40px); line-height:1.15; margin:0 0 10px;
+}
+.lp-sub{
+  color:#e2e8f0; max-width: 60ch; margin:0 0 18px; font-size:1.05rem;
+}
+.lp-cta{ display:flex; gap:12px; margin-bottom:12px; }
+.lp-btn{
+  background:linear-gradient(135deg, var(--accent), var(--accent-2));
+  color:#fff; padding:12px 16px; border:none; border-radius:12px;
+  font-weight:700; text-decoration:none; display:inline-block;
+  box-shadow:0 12px 20px rgba(28,76,145,.3), inset 0 0 0 1px rgba(255,255,255,.25);
+}
+.lp-btn.small{ padding:10px 12px; border-radius:10px; font-weight:700; }
+.lp-btn.ghost{
+  background:transparent; color:#e2e8f0; border:1px solid rgba(255,255,255,.5);
+  box-shadow:none;
+}
+
+.lp-note{
+  display:flex; align-items:center; gap:8px; color:#cbd5e1; font-weight:600;
+}
+
+/* side card */
+/* Center the hero and cap width so it doesn't feel empty on ultra-wide screens */
+.lp-hero{
+  display:grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap:28px;
+  padding:40px 28px 28px;
+  align-items:center;
+
+  /* NEW */
+  max-width: 1200px;       /* <- cap width */
+  margin: 0 auto;          /* <- center */
+  min-height: 70vh;        /* <- give it presence */
+}
+
+/* Make the right card fill more space so it balances the hero */
+.lp-hero-card{
+  background: rgba(255,255,255,.92);
+  backdrop-filter: saturate(1.2) blur(6px);
+  border-radius:16px; padding:20px; border:1px solid rgba(255,255,255,.65);
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
+
+  /* NEW */
+  min-height: 420px;       /* taller card */
+}
+
+.lp-card-title{
+  display:flex; align-items:center; gap:8px; font-weight:800; color:var(--text);
+  margin-bottom:10px;
+}
+.lp-list{ list-style:none; padding:0; margin:0; display:grid; gap:10px; }
+.lp-list li{
+  display:flex; align-items:center; gap:10px; color:var(--text); background:#fff; border:1px solid #e5e7eb;
+  border-radius:12px; padding:10px 12px;
+}
+
+/* footer */
+.lp-footer{
+  margin-top:auto; padding:20px 28px; display:flex; justify-content:space-between; align-items:center;
+  color:#cbd5e1;
+}
+.lp-footer a{ color:#cbd5e1; text-decoration:none; }
+.lp-footer a:hover{ text-decoration:underline; }
+.lp-footer-links{ display:flex; gap:16px; }
+
+/* responsive */
+@media (max-width:900px){
+  .lp-hero{ grid-template-columns:1fr; }
+  .lp-hero-card{ order:-1; margin-bottom:16px; }
+}
