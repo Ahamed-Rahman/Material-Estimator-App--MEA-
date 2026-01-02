@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 import SuccessModal from "../components/SuccessModal";
 import axios from "axios";
 
-/* ================= ICONS ================= */
+/* ===== Icons ===== */
 
 const ShopIcon = () => (
   <svg viewBox="0 0 24 24" width="18" height="18">
-    <path fill="currentColor" d="M4 4h16l-1 6H5L4 4zm2 8h12v8H6v-8zm2 2v4h8v-4H8z"/>
+    <path fill="currentColor" d="M4 4h16l-1 6H5L4 4zm2 8h12v8H6v-8z"/>
   </svg>
 );
 
@@ -30,17 +30,7 @@ const LockIcon = () => (
   </svg>
 );
 
-const EyeIcon = ({ off }) => (
-  <svg viewBox="0 0 24 24" width="18" height="18">
-    {off ? (
-      <path fill="currentColor" d="M2 4.27L3.28 3 21 20.72 19.73 22l-2.29-2.29A10.8 10.8 0 0112 20C6 20 2 12 2 12a18.6 18.6 0 013.86-4.93z"/>
-    ) : (
-      <path fill="currentColor" d="M12 6c6 0 10 8 10 8s-4 8-10 8S2 14 2 14 6 6 12 6zm0 4a4 4 0 100 8 4 4 0 000-8z"/>
-    )}
-  </svg>
-);
-
-/* ================= COMPONENT ================= */
+/* ===== Component ===== */
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -51,11 +41,8 @@ const Signup = () => {
     confirmPassword: "",
   });
 
-  const [showPw, setShowPw] = useState(false);
-  const [showConfirm, setShowConfirm] = useState(false);
   const [loading, setLoading] = useState(false);
   const [modal, setModal] = useState({ show: false, message: "", type: "success" });
-
   const navigate = useNavigate();
 
   const handleChange = (e) =>
@@ -82,7 +69,6 @@ const Signup = () => {
         setModal({ show: false, message: "", type: "success" });
         navigate("/login");
       }, 2000);
-
     } catch (err) {
       setModal({
         show: true,
@@ -97,72 +83,64 @@ const Signup = () => {
   return (
     <div className="auth-signup-page">
       <div className="auth-signup-card">
+
         <div className="auth-brand">
           <div className="auth-logo">ME</div>
-          <h1>Create your account</h1>
+          <div>
+            <h1>Create your account</h1>
+            <p className="muted">Get started with Material Estimator in minutes</p>
+          </div>
         </div>
 
         <form className="auth-form" onSubmit={handleSubmit}>
 
           <label className="auth-field">
-            <span>Shop Name</span>
+            <span className="auth-label">Shop Name</span>
             <div className="auth-input-wrap">
-              <ShopIcon />
+              <span className="auth-icon"><ShopIcon /></span>
               <input name="shopName" onChange={handleChange} required />
             </div>
           </label>
 
           <label className="auth-field">
-            <span>Owner Name</span>
+            <span className="auth-label">Owner Name</span>
             <div className="auth-input-wrap">
-              <UserIcon />
+              <span className="auth-icon"><UserIcon /></span>
               <input name="ownerName" onChange={handleChange} required />
             </div>
           </label>
 
           <label className="auth-field">
-            <span>Email</span>
+            <span className="auth-label">Email</span>
             <div className="auth-input-wrap">
-              <MailIcon />
-              <input name="email" type="email" onChange={handleChange} required />
+              <span className="auth-icon"><MailIcon /></span>
+              <input type="email" name="email" onChange={handleChange} required />
             </div>
           </label>
 
           <label className="auth-field">
-            <span>Password</span>
+            <span className="auth-label">Password</span>
             <div className="auth-input-wrap">
-              <LockIcon />
-              <input
-                type={showPw ? "text" : "password"}
-                name="password"
-                onChange={handleChange}
-                required
-              />
-              <button type="button" onClick={() => setShowPw(!showPw)}>
-                <EyeIcon off={!showPw} />
-              </button>
+              <span className="auth-icon"><LockIcon /></span>
+              <input type="password" name="password" onChange={handleChange} required />
             </div>
           </label>
 
           <label className="auth-field">
-            <span>Confirm Password</span>
+            <span className="auth-label">Confirm Password</span>
             <div className="auth-input-wrap">
-              <LockIcon />
-              <input
-                type={showConfirm ? "text" : "password"}
-                name="confirmPassword"
-                onChange={handleChange}
-                required
-              />
-              <button type="button" onClick={() => setShowConfirm(!showConfirm)}>
-                <EyeIcon off={!showConfirm} />
-              </button>
+              <span className="auth-icon"><LockIcon /></span>
+              <input type="password" name="confirmPassword" onChange={handleChange} required />
             </div>
           </label>
 
-          <button className="auth-btn primary" disabled={loading}>
+          <button className="auth-btn primary" type="submit" disabled={loading}>
             {loading ? "Creating..." : "Sign up"}
           </button>
+
+          <p className="auth-small">
+            Already have an account? <a className="auth-link" href="/login">Sign in</a>
+          </p>
         </form>
       </div>
 
